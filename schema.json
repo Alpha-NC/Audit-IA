@@ -1,0 +1,205 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Audit IA Form Schema",
+  "description": "Schema de validation pour le formulaire Audit IA Alpha No-Code",
+  "type": "object",
+  "required": ["meta", "answers"],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["submittedAt", "tracking"],
+      "properties": {
+        "submittedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Date et heure de soumission au format ISO 8601"
+        },
+        "tracking": {
+          "type": "object",
+          "required": ["sessionId", "tag", "params"],
+          "properties": {
+            "sessionId": {
+              "type": "string",
+              "description": "Identifiant unique de session"
+            },
+            "tag": {
+              "type": "string",
+              "enum": ["audit-ia"],
+              "description": "Tag du formulaire"
+            },
+            "params": {
+              "type": "object",
+              "properties": {
+                "utm_source": { "type": "string" },
+                "utm_medium": { "type": "string" },
+                "utm_campaign": { "type": "string" },
+                "utm_term": { "type": "string" },
+                "utm_content": { "type": "string" },
+                "ref": { "type": "string" },
+                "variant": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "answers": {
+      "type": "object",
+      "required": [
+        "business_sector",
+        "client_type",
+        "q1_people",
+        "biggestChallenge",
+        "pain_score",
+        "process_type",
+        "process_volume",
+        "process_volume_unit",
+        "error_impact",
+        "urgency",
+        "decision_power",
+        "budget_range",
+        "goal_type",
+        "company_name",
+        "contact_firstname",
+        "contact_lastname",
+        "contact_email",
+        "preferred_channel",
+        "preferred_time",
+        "consent_rgpd"
+      ],
+      "properties": {
+        "business_sector": {
+          "type": "string",
+          "enum": [
+            "Artisan / BTP",
+            "Agence marketing",
+            "Intérim / RH",
+            "Cabinet HSE / QHSE",
+            "Commerce / e-commerce",
+            "Services B2B",
+            "Autre"
+          ],
+          "description": "Secteur d'activité"
+        },
+        "business_sector_other": {
+          "type": "string",
+          "description": "Secteur d'activité personnalisé (si Autre sélectionné)"
+        },
+        "client_type": {
+          "type": "string",
+          "enum": ["B2B", "B2C", "B2B + B2C"],
+          "description": "Type de clients"
+        },
+        "q1_people": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Nombre de personnes dans l'équipe"
+        },
+        "biggestChallenge": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Plus grand défi opérationnel"
+        },
+        "pain_score": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10,
+          "description": "Niveau de douleur (1-10)"
+        },
+        "process_type": {
+          "type": "string",
+          "enum": ["devis", "factures", "relances", "leads", "support", "reporting", "autre"],
+          "description": "Type de process à automatiser"
+        },
+        "process_volume": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Volume traité"
+        },
+        "process_volume_unit": {
+          "type": "string",
+          "enum": ["/mois", "/semaine"],
+          "default": "/mois",
+          "description": "Unité de volume"
+        },
+        "error_impact": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["temps", "argent", "image", "retards"]
+          },
+          "minItems": 1,
+          "description": "Impact des erreurs/retards"
+        },
+        "urgency": {
+          "type": "string",
+          "enum": ["1–2 semaines", "1 mois", "3 mois", "pas pressé"],
+          "description": "Urgence du projet"
+        },
+        "decision_power": {
+          "type": "string",
+          "enum": ["je décide", "décision partagée", "je dois convaincre"],
+          "description": "Pouvoir de décision"
+        },
+        "budget_range": {
+          "type": "string",
+          "enum": ["0–300", "300–900", "900–2500", "2500+"],
+          "description": "Budget mensuel envisagé"
+        },
+        "goal_type": {
+          "type": "string",
+          "enum": ["temps", "chiffre", "erreurs", "autre"],
+          "description": "Type d'objectif principal"
+        },
+        "goal_value": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Valeur de l'objectif (si goal_type != autre)"
+        },
+        "goal_text": {
+          "type": "string",
+          "description": "Description de l'objectif (si goal_type == autre)"
+        },
+        "company_name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Nom de l'entreprise"
+        },
+        "contact_firstname": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Prénom du contact"
+        },
+        "contact_lastname": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Nom du contact"
+        },
+        "contact_email": {
+          "type": "string",
+          "format": "email",
+          "description": "Email du contact"
+        },
+        "contact_phone": {
+          "type": "string",
+          "description": "Téléphone du contact (optionnel)"
+        },
+        "preferred_channel": {
+          "type": "string",
+          "enum": ["email", "téléphone", "whatsapp"],
+          "description": "Canal de contact préféré"
+        },
+        "preferred_time": {
+          "type": "string",
+          "enum": ["matin", "après-midi", "soir"],
+          "description": "Créneau préféré"
+        },
+        "consent_rgpd": {
+          "type": "boolean",
+          "const": true,
+          "description": "Consentement RGPD (doit être true)"
+        }
+      }
+    }
+  }
+}
