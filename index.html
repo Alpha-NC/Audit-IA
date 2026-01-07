@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Audit IA gratuit - Découvrez le potentiel d'automatisation de votre entreprise avec Alpha No-Code">
+  <meta name="robots" content="index, follow">
+  <title>Audit IA Gratuit | Alpha No-Code</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="assets/logo.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/logo.png">
+</head>
+<body>
+  <div class="form-container">
+    <!-- Logo Header -->
+    <header class="logo-header">
+      <a href="https://alpha-nc.com" target="_blank" rel="noopener">
+        <img src="assets/logo.png" alt="Alpha No-Code" class="logo">
+        <span class="logo-text">Alpha No-Code</span>
+      </a>
+    </header>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <div class="progress-text" id="progressText">Étape 1 sur 7</div>
+
+    <form id="auditForm" novalidate>
+      <!-- Honeypot (Anti-spam) -->
+      <input type="text" name="hp_field" id="hp_field" class="hp-field" tabindex="-1" autocomplete="off">
+
+      <!-- PAGE 1: Intro -->
+      <div class="form-page active" data-page="1">
+        <h1 class="page-title">Audit IA Gratuit</h1>
+        <p class="intro-text">
+          Découvrez en 2 minutes le <strong>potentiel d'automatisation</strong> de votre entreprise.<br>
+          Recevez une analyse personnalisée et des recommandations concrètes.
+        </p>
+        <div class="intro-benefits">
+          <div class="benefit-item">
+            <span class="benefit-icon">⏱️</span>
+            <span>2 minutes pour compléter</span>
+          </div>
+          <div class="benefit-item">
+            <span class="benefit-icon">📊</span>
+            <span>Analyse instantanée</span>
+          </div>
+          <div class="benefit-item">
+            <span class="benefit-icon">🎯</span>
+            <span>Recommandations personnalisées</span>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn btn-primary btn-next">Commencer l'audit</button>
+        </div>
+      </div>
+
+      <!-- PAGE 2: Contexte -->
+      <div class="form-page" data-page="2">
+        <h2 class="page-title">Votre contexte</h2>
+        
+        <div class="form-group">
+          <label for="business_sector" class="form-label">Secteur d'activité <span class="required">*</span></label>
+          <select id="business_sector" name="business_sector" required class="form-select">
+            <option value="">Sélectionnez votre secteur</option>
+            <option value="Artisan / BTP">Artisan / BTP</option>
+            <option value="Agence marketing">Agence marketing</option>
+            <option value="Intérim / RH">Intérim / RH</option>
+            <option value="Cabinet HSE / QHSE">Cabinet HSE / QHSE</option>
+            <option value="Commerce / e-commerce">Commerce / e-commerce</option>
+            <option value="Services B2B">Services B2B</option>
+            <option value="Autre">Autre</option>
+          </select>
+        </div>
+
+        <div class="form-group" id="business_sector_other_group" style="display:none;">
+          <label for="business_sector_other" class="form-label">Précisez votre secteur <span class="required">*</span></label>
+          <input type="text" id="business_sector_other" name="business_sector_other" class="form-input" placeholder="Ex : Immobilier, Santé, Formation...">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Type de clients <span class="required">*</span></label>
+          <div class="radio-group">
+            <label class="radio-label">
+              <input type="radio" name="client_type" value="B2B" required>
+              <span class="radio-custom"></span>
+              B2B (Entreprises)
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="client_type" value="B2C" required>
+              <span class="radio-custom"></span>
+              B2C (Particuliers)
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="client_type" value="B2B + B2C" required>
+              <span class="radio-custom"></span>
+              B2B + B2C (Les deux)
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="q1_people" class="form-label">Nombre de personnes dans l'équipe <span class="required">*</span></label>
+          <input type="number" id="q1_people" name="q1_people" min="1" required class="form-input" placeholder="Ex : 5">
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn btn-secondary btn-prev">Précédent</button>
+          <button type="button" class="btn btn-primary btn-next">Suivant</button>
+        </div>
+      </div>
+
+      <!-- PAGE 3: Problèmes & douleur -->
+      <div class="form-page" data-page="3">
+        <h2 class="page-title">Problèmes & douleur</h2>
+
+        <div class="form-group">
+          <label for="biggestChallenge" class="form-label">Quel est votre plus grand défi opérationnel ? <span class="required">*</span></label>
+          <textarea id="biggestChallenge" name="biggestChallenge" required class="form-textarea" rows="4" placeholder="Ex : gestion du temps, prospection, suivi client..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="pain_score" class="form-label">Niveau de douleur (1 = faible, 10 = critique) <span class="required">*</span></label>
+          <div class="range-container">
+            <input type="range" id="pain_score" name="pain_score" min="1" max="10" value="5" required class="form-range">
+            <div class="range-labels">
+              <span>1</span>
+              <span class="range-value" id="pain_score_value">5</span>
+              <span>10</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn btn-secondary btn-prev">Précédent</button>
+          <button type="button" class="btn btn-primary btn-next">Suivant</button>
+        </div>
+      </div>
+
+      <!-- PAGE 4: Volumes & impact -->
+      <div class="form-page" data-page="4">
+        <h2 class="page-title">Volumes & impact</h2>
+
+        <div class="form-group">
+          <label for="process_type" class="form-label">Process à automatiser <span class="required">*</span></label>
+          <select id="process_type" name="process_type" required class="form-select">
+            <option value="">Sélectionnez un process</option>
+            <option value="devis">Création de devis</option>
+            <option value="factures">Facturation</option>
+            <option value="relances">Relances clients</option>
+            <option value="leads">Gestion des leads</option>
+            <option value="support">Support client</option>
+            <option value="reporting">Reporting</option>
+            <option value="autre">Autre</option>
+          </select>
+        </div>
+
+        <div class="form-group form-row">
+          <div class="form-col">
+            <label for="process_volume" class="form-label">Volume traité <span class="required">*</span></label>
+            <input type="number" id="process_volume" name="process_volume" min="1" required class="form-input" placeholder="Ex : 50">
+          </div>
+          <div class="form-col">
+            <label for="process_volume_unit" class="form-label">Unité <span class="required">*</span></label>
+            <select id="process_volume_unit" name="process_volume_unit" required class="form-select">
+              <option value="/mois" selected>/mois</option>
+              <option value="/semaine">/semaine</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Impact des erreurs/retards <span class="required">*</span></label>
+          <div class="checkbox-group">
+            <label class="checkbox-label">
+              <input type="checkbox" name="error_impact" value="temps">
+              <span class="checkbox-custom"></span>
+              Perte de temps
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" name="error_impact" value="argent">
+              <span class="checkbox-custom"></span>
+              Perte d'argent
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" name="error_impact" value="image">
+              <span class="checkbox-custom"></span>
+              Image de marque
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" name="error_impact" value="retards">
+              <span class="checkbox-custom"></span>
+              Retards de livraison
+            </label>
+          </div>
+          <span class="error-message" id="error_impact_error"></span>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn btn-secondary btn-prev">Précédent</button>
+          <button type="button" class="btn btn-primary btn-next">Suivant</button>
+        </div>
+      </div>
+
+      <!-- PAGE 5: Décision & budget -->
+      <div class="form-page" data-page="5">
+        <h2 class="page-title">Décision & budget</h2>
+
+        <div class="form-group">
+          <label class="form-label">Urgence du projet <span class="required">*</span></label>
+          <div class="radio-group">
+            <label class="radio-label">
+              <input type="radio" name="urgency" value="1–2 semaines" required>
+              <span class="radio-custom"></span>
+              1–2 semaines
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="urgency" value="1 mois" required>
+              <span class="radio-custom"></span>
+              1 mois
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="urgency" value="3 mois" required>
+              <span class="radio-custom"></span>
+              3 mois
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="urgency" value="pas pressé" required>
+              <span class="radio-custom"></span>
+              Pas pressé
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Pouvoir de décision <span class="required">*</span></label>
+          <div class="radio-group">
+            <label class="radio-label">
+              <input type="radio" name="decision_power" value="je décide" required>
+              <span class="radio-custom"></span>
+              Je décide seul(e)
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="decision_power" value="décision partagée" required>
+              <span class="radio-custom"></span>
+              Décision partagée
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="decision_power" value="je dois convaincre" required>
+              <span class="radio-custom"></span>
+              Je dois convaincre
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Budget mensuel envisagé <span class="required">*</span></label>
+          <div class="radio-group">
+            <label class="radio-label">
+              <input type="radio" name="budget_range" value="0–300" required>
+              <span class="radio-custom"></span>
+              0 – 300 €/mois
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="budget_range" value="300–900" required>
+              <span class="radio-custom"></span>
+              300 – 900 €/mois
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="budget_range" value="900–2500" required>
+              <span class="radio-custom"></span>
+              900 – 2 500 €/mois
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="budget_range" value="2500+" required>
+              <span class="radio-custom"></span>
+              2 500+ €/mois
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Objectif principal <span class="required">*</span></label>
+          <div class="radio-group">
+            <label class="radio-label">
+              <input type="radio" name="goal_type" value="temps" required>
+              <span class="radio-custom"></span>
+              Gagner du temps (h/semaine)
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="goal_type" value="chiffre" required>
+              <span class="radio-custom"></span>
+              Augmenter le chiffre d'affaires (€/mois)
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="goal_type" value="erreurs" required>
+              <span class="radio-custom"></span>
+              Réduire les erreurs (%)
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="goal_type" value="autre" required>
+              <span class="radio-custom"></span>
+              Autre objectif
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group" id="goal_value_group" style="display:none;">
+          <label for="goal_value" class="form-label">Valeur de l'objectif <span class="required">*</span></label>
+          <input type="number" id="goal_value" name="goal_value" min="1" class="form-input" placeholder="Ex : 10">
+        </div>
+
+        <div class="form-group" id="goal_text_group" style="display:none;">
+          <label for="goal_text" class="form-label">Décrivez votre objectif <span class="required">*</span></label>
+          <input type="text" id="goal_text" name="goal_text" class="form-input" placeholder="Ex : Améliorer la satisfaction client">
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn btn-secondary btn-prev">Précédent</button>
+          <button type="button" class="btn btn-primary btn-next">Suivant</button>
+        </div>
+      </div>
+
+      <!-- PAGE 6: Coordonnées -->
+      <div class="form-page" data-page="6">
+        <h2 class="page-title">Vos coordonnées</h2>
+
+        <div class="form-group">
+          <label for="company_name" class="form-label">Nom de l'entreprise <span class="required">*</span></label>
+          <input type="text" id="company_name" name="company_name" required class="form-input" placeholder="Ex : Alpha No-Code">
+        </div>
+
+        <div class="form-group form-row">
+          <div class="form-col">
+            <label for="contact_firstname" class="form-label">Prénom <span class="required">*</span></label>
+            <input type="text" id="contact_firstname" name="contact_firstname" required class="form-input" placeholder="Ex : Jean">
+          </div>
+          <div class="form-col">
+            <label for="contact_lastname" class="form-label">Nom <span class="required">*</span></label>
+            <input type="text" id="contact_lastname" name="contact_lastname" required class="form-input" placeholder="Ex : Dupont">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="contact_email" class="form-label">Email <span class="required">*</span></label>
+          <input type="email" id="contact_email" name="contact_email" required class="form-input" placeholder="Ex : jean@entreprise.com">
+        </div>
+
+        <div class="form-group">
+          <label for="contact_phone" class="form-label">Téléphone</label>
+          <input type="tel" id="contact_phone" name="contact_phone" class="form-input" placeholder="Ex : 06 12 34 56 78">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Canal de contact préféré <span class="required">*</span></label>
+          <div class="radio-group radio-group-inline">
+            <label class="radio-label">
+              <input type="radio" name="preferred_channel" value="email" required>
+              <span class="radio-custom"></span>
+              Email
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="preferred_channel" value="téléphone" required>
+              <span class="radio-custom"></span>
+              Téléphone
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="preferred_channel" value="whatsapp" required>
+              <span class="radio-custom"></span>
+              WhatsApp
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Créneau préféré <span class="required">*</span></label>
+          <div class="radio-group radio-group-inline">
+            <label class="radio-label">
+              <input type="radio" name="preferred_time" value="matin" required>
+              <span class="radio-custom"></span>
+              Matin
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="preferred_time" value="après-midi" required>
+              <span class="radio-custom"></span>
+              Après-midi
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="preferred_time" value="soir" required>
+              <span class="radio-custom"></span>
+              Soir
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="checkbox-label consent-label">
+            <input type="checkbox" name="consent_rgpd" id="consent_rgpd" required>
+            <span class="checkbox-custom"></span>
+            <span>J'accepte que mes données soient utilisées pour me recontacter dans le cadre de cet audit. <span class="required">*</span>
+            <a href="politique-confidentialite.html" target="_blank" rel="noopener">Politique de confidentialité</a></span>
+          </label>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn btn-secondary btn-prev">Précédent</button>
+          <button type="submit" class="btn btn-primary btn-submit" id="submitBtn">
+            <span class="btn-text">Obtenir mon analyse</span>
+            <span class="btn-loader" style="display:none;">
+              <span class="loader"></span>
+              Envoi en cours...
+            </span>
+          </button>
+        </div>
+      </div>
+
+      <!-- PAGE 7: Confirmation -->
+      <div class="form-page" data-page="7">
+        <div class="confirmation-header">
+          <div class="success-icon">✓</div>
+          <h2 class="page-title">Merci pour votre demande !</h2>
+          <p class="confirmation-text">Votre analyse express a été générée. Découvrez vos résultats ci-dessous.</p>
+        </div>
+
+        <div id="analysisContainer" class="analysis-container">
+          <!-- L'analyse HTML sera injectée ici -->
+        </div>
+
+        <div class="cta-section">
+          <h3 class="cta-title">Prochaine étape</h3>
+          <p class="cta-text">Réservez un appel de 15 minutes pour approfondir votre analyse et définir un plan d'action concret.</p>
+          <a href="https://calendly.com/agence-alphanc/audit-decouverte" target="_blank" rel="noopener" class="btn btn-primary btn-large">
+            Réserver un appel gratuit
+          </a>
+        </div>
+      </div>
+    </form>
+
+    <!-- Sticky Bar -->
+    <div class="sticky-bar">
+      <div class="sticky-content">
+        <span class="sticky-icon">🔒</span>
+        <span class="sticky-text">Vos données sont sécurisées et ne seront jamais partagées.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Error Modal -->
+  <div class="modal" id="errorModal">
+    <div class="modal-content">
+      <div class="modal-icon error-icon">!</div>
+      <h3 class="modal-title">Une erreur est survenue</h3>
+      <p class="modal-message" id="errorMessage">Veuillez réessayer dans quelques instants.</p>
+      <button type="button" class="btn btn-primary" id="closeModalBtn">Fermer</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
